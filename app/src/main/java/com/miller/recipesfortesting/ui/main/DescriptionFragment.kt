@@ -9,13 +9,13 @@ import com.miller.recipesfortesting.R
 import com.miller.recipesfortesting.data.local.RecipeStore
 import com.miller.recipesfortesting.data.local.SharedPreferencesFavourites
 import com.miller.recipesfortesting.databinding.FragmentDescriptionBinding
+import com.miller.recipesfortesting.injection.RecipeApplication
 
 class DescriptionFragment : Fragment() {
     private lateinit var binding: FragmentDescriptionBinding
-
+    private val app = requireActivity().application as RecipeApplication
     private val store = RecipeStore()
     private lateinit var sharedPreferences: SharedPreferencesFavourites
-
     private var id: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +37,7 @@ class DescriptionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDescriptionBinding.bind(view)
         store.init(requireContext(), "recipes")
-        sharedPreferences = SharedPreferencesFavourites(requireContext())
+        sharedPreferences = app.getFavourites() as SharedPreferencesFavourites
         val recipe = store.getRecipe(id ?: "-1") ?: return
         val isFavSelected = sharedPreferences.get(recipe.id)
 
@@ -56,7 +56,6 @@ class DescriptionFragment : Fragment() {
 
     companion object {
         const val ID = "id"
-
         @JvmStatic
         fun newInstance(param1: String) =
             DescriptionFragment().apply {
@@ -65,5 +64,4 @@ class DescriptionFragment : Fragment() {
                 }
             }
     }
-
 }

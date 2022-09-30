@@ -4,10 +4,10 @@ import android.content.Context
 
 class SharedPreferencesFavourites(
     context: Context
-) {
+) : Favourites {
     private val sharedPreferences = context.getSharedPreferences("favourites", Context.MODE_PRIVATE)
 
-    fun get(id: String): Boolean {
+    override fun get(id: String): Boolean {
         return sharedPreferences.getBoolean(id, false)
     }
 
@@ -18,7 +18,7 @@ class SharedPreferencesFavourites(
         editor.apply()
     }
 
-    fun toggle(id: String): Boolean {
+    override fun toggle(id: String): Boolean {
         val isSelected = get(id)
         put(id, !isSelected)
         return !isSelected

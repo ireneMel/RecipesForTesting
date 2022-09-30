@@ -40,7 +40,8 @@ class DescriptionFragmentTest {
         scenario.moveToState(Lifecycle.State.RESUMED)
         // EventFragment moves to CREATED -> STARTED -> RESUMED.
 
-        onView(withId(R.id.title)).check(matches(withText("Creamed Carrots")))
+        onView(withId(R.id.title))
+            .check(matches(withText("Creamed Carrots")))
             .check(matches(not(isSelected())))
             .perform(click())
             .check(matches(isSelected()))
