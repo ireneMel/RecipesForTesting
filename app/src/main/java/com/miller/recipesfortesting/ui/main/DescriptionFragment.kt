@@ -10,8 +10,6 @@ import com.miller.recipesfortesting.data.local.RecipeStore
 import com.miller.recipesfortesting.data.local.SharedPreferencesFavourites
 import com.miller.recipesfortesting.databinding.FragmentDescriptionBinding
 
-private const val ID = "id"
-
 class DescriptionFragment : Fragment() {
     private lateinit var binding: FragmentDescriptionBinding
 
@@ -57,6 +55,8 @@ class DescriptionFragment : Fragment() {
     }
 
     companion object {
+        const val ID = "id"
+
         @JvmStatic
         fun newInstance(param1: String) =
             DescriptionFragment().apply {
